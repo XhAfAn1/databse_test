@@ -71,10 +71,17 @@ class _UserListScreenState extends State<UserListScreen> {
                   title: Text(user.name),
                   subtitle: Row(
                     children: [
-                      Text(user.email+" || Phone: "),
-                      Text(user.phone),
+                      Text(user.email+"\nPhone: "+user.phone)
+
                     ],
                   ),
+                  trailing: IconButton(onPressed: () {
+                    apiService.deleteUser(user);
+                    setState(()  {
+                      apiService = ApiService();
+                      futureUsers = apiService.fetchUsers();
+                    });
+                  }, icon: Icon(Icons.delete_outline)),
                 );
               },
             );

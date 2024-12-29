@@ -35,6 +35,22 @@ class ApiService {
     if (response.statusCode != 200) {
       throw Exception('Failed to add user');
     }
+    else {
+      print(response.body);
+    }
+  }
+  Future<void> deleteUser(User user) async {
+    final response = await http.post(
+      Uri.parse('$baseUrl/delete_user.php'),
+      body: jsonEncode(user.toJson()),
+    );
+
+    if (response.statusCode != 200) {
+      throw Exception('Failed to delete user');
+    }
+    else {
+      print(response.body);
+    }
   }
 }
 

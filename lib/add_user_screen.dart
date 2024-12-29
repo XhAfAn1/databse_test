@@ -1,3 +1,4 @@
+import 'package:databse_test/main.dart';
 import 'package:databse_test/user.dart';
 import 'package:flutter/material.dart';
 import 'api_service.dart';
@@ -118,7 +119,11 @@ class _AddUserScreenState extends State<AddUserScreen> {
                     _apiService.addUser(newUser).then((_) {
                       ScaffoldMessenger.of(context).showSnackBar(
                           SnackBar(content: Text('User added successfully')));
-                      Navigator.pop(context);
+
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => UserListScreen()),
+                      );
                     }).catchError((error) {
                       ScaffoldMessenger.of(context).showSnackBar(
                           SnackBar(content: Text('Failed to add user')));
